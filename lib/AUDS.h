@@ -15,13 +15,13 @@ class AUDS{
 		/************************************************************************
     		 * This is the copy constructor. It will take as a parameter a reference 
 		 * to another AUDS object and will perform a DEEP copy of the object.
-    		 * @param 
+    		 * @author: Runquan Ye 
     		 ***********************************************************************/		
 		AUDS(const AUDS &other){
 			initialSize = 100;
 			currentSize = 0;
 			currentMax = 100;
-			data  = new T (initialSize); 
+			data  = new T [initialSize]; 
 		}	
 		
 
@@ -29,10 +29,10 @@ class AUDS{
     		 * This is the copy operator=. It will perform the copy-and-swap we 
 		 * learned about in class to set one object equal to another. It also 
 		 * performs a DEEP copy.
-    		 * @param 
+    		 * @author: Nabeel Vali 
     		 ***********************************************************************/
-		AUDS& operator=(AUDS other){
-
+		AUDS& operator = (AUDS other){
+			
 
 		};
 
@@ -40,6 +40,7 @@ class AUDS{
 		/************************************************************************
     		 * This is the destructor. It will give back any memory we borrowed from 
 		 * the OS to hold the data we stored.
+		 * @author: Runquan Ye
     		 ***********************************************************************/
 		~AUDS(){
 			delete[] data;	
@@ -48,6 +49,7 @@ class AUDS{
 		
 		/************************************************************************
     		 * Returns the current number of objects we are holding.
+    		 * @author: Nabeel Vali
     		 ***********************************************************************/
 		int size(){
 			
@@ -57,6 +59,7 @@ class AUDS{
 
 		/************************************************************************
     		 * Adds the generic element to the data structure.
+    		 * @author: Nabeel Vali
     		 ***********************************************************************/
 		void push(T e){
 
@@ -65,6 +68,7 @@ class AUDS{
 		/************************************************************************
     		 * Removes a random item from the list. Moves the last item in the array 
 		 * to the spot that was occupied by the element we removed.
+		 * @author: Runquan Ye
     		 ***********************************************************************/
 		T pop(){
 		
