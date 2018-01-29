@@ -75,6 +75,7 @@ class AUDS{
 		}
 	
 	private:
+		// the number for the initiialsize of the array
 		int initialSize;
 		int currentSize;
 		int currentMax;
