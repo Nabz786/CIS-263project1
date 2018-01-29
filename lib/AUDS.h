@@ -75,10 +75,10 @@ class AUDS{
 		 * @author: Runquan Ye
     		 ***********************************************************************/
 		T pop(){
-			int* ram = rand() %currentMax;
+			int ram = rand() %currentMax;
 			delete data[ram];
-			ram = NULL;
-			ram = &data[currentMax];  
+			data[ram] = &data[currentMax - 1];
+			data[currentMax - 1] = &data[currentMax - 2];  
 		}
 	
 	private:
