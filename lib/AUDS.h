@@ -1,4 +1,5 @@
 template <typename T>
+#include <stdlib.h> 
 
 /*****************************************************************
  * Almost Useless Data Structure (AUDS). This data structure will 
@@ -47,11 +48,14 @@ class AUDS{
     		 * This is the copy operator=. It will perform the copy-and-swap we 
 		 * learned about in class to set one object equal to another. It also 
 		 * performs a DEEP copy.
-    		 * @author: Nabeel Vali 
+    		 * @author: Runquan Ye 
     		 ***********************************************************************/
 		AUDS& operator = (AUDS other){
-			
-
+			std::swap(currentMax, other.currentMax);
+			std::swap(currentSize, other.currentSize);
+			std::swap(initialSize, other.initialSize);
+			std::swap(data, other.data);
+			return *this;
 		};
 
 		
@@ -94,7 +98,10 @@ class AUDS{
 		 * @author: Runquan Ye
     		 ***********************************************************************/
 		T pop(){
-		
+			int ram = rand() %currentMax;
+			delete data[ram];
+			data[ram] = &data[currentMax - 1];
+			data[currentMax - 1] = &data[currentMax - 2];  
 		}
 	
 	private:
