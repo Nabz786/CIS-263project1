@@ -11,17 +11,35 @@ template <typename T>
 class AUDS{
 
 	public:
+	
 		
-		/************************************************************************
-    		 * This is the copy constructor. It will take as a parameter a reference 
-		 * to another AUDS object and will perform a DEEP copy of the object.
-    		 * @author: Runquan Ye 
-    		 ***********************************************************************/		
-		AUDS(const AUDS &other){
+		/***********************************************************************
+		*Generic Constructor used when program is started to intialize our
+		*generic array
+		*@Author Jerry Ye	
+		***********************************************************************/	
+		AUDS(){
 			initialSize = 100;
 			currentSize = 0;
 			currentMax = 100;
-			data  = new T [initialSize]; 
+			data = new T[initialSize];
+		}
+
+
+		/************************************************************************
+    		 * This is the copy constructor. It will take as a parameter a reference 
+		 * to another AUDS object and will perform a DEEP copy of the object.
+    		 * @author: Nabeel 
+    		 ***********************************************************************/		
+		AUDS(const AUDS &other){
+			currentSize = other.currentSize;
+			currentMax = other.currentMax;
+			initialSize = other.currentSize;
+			data = new std::string[currentMax]
+			
+			for(int i=0; i<currentMax; i++){ //figure out whether currentMAX or initialSize updates first so that we can get the new array size.
+				data[i] = other.data[i];
+			}
 		}	
 		
 
@@ -52,8 +70,13 @@ class AUDS{
     		 * @author: Nabeel Vali
     		 ***********************************************************************/
 		int size(){
-			
-		
+			int numItems = 0;
+			for(int i=0; i<currentMax; i++){
+				if(data[i] != null){//this condition may be invalid
+					numItems++;
+				}
+			}
+			return numItems;
 		}
 		
 
@@ -75,10 +98,15 @@ class AUDS{
 		}
 	
 	private:
-		// the number for the initiialsize of the array
+		/** Initial (starting) size of the array **/
 		int initialSize;
+	
+		/** Current size of our array **/
 		int currentSize;
+
+		/** Current max size of the array **/
 		int currentMax;
 
-		T* data;
-};
+		/** Generic pointer to our array **/
+		std::T* data;
+}
