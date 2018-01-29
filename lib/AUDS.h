@@ -72,7 +72,8 @@ class AUDS{
 		/************************************************************************
     		 * Returns the current number of objects we are holding.
     		 * @author: Nabeel Vali
-    		 ***********************************************************************/
+    		 *
+    		 **********************************************************************/
 		int size(){
 			int numItems = 0;
 			for(int i=0; i<currentMax; i++){
@@ -85,11 +86,12 @@ class AUDS{
 		
 
 		/************************************************************************
-    		 * Adds the generic element to the data structure.
+    		 * Adds the generic element to the data structure. If the array is full 
+    		 * we recrate the array, but make it 50 percent larger
     		 * @author: Nabeel Vali
     		 ***********************************************************************/
 		void push(T e){
-
+			
 		}
 		
 		/************************************************************************
@@ -98,10 +100,10 @@ class AUDS{
 		 * @author: Runquan Ye
     		 ***********************************************************************/
 		T pop(){
-			int ram = rand() %currentMax;
-			delete data[ram];
-			data[ram] = &data[currentMax - 1];
-			data[currentMax - 1] = &data[currentMax - 2];  
+			int randomIndex = rand() %currentMax;
+			delete data[randomIndex];
+			data[randomIndex] = &data[currentMax - 1];
+			data[currentMax- 1] = &data[currentMax - 2];  
 		}
 	
 	private:
