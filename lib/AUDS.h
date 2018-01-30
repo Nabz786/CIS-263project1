@@ -17,15 +17,26 @@ class AUDS{
 		/***********************************************************************
 		*Generic Constructor used when program is started to intialize our
 		*generic array
-		*@Author Jerry Ye	
+		*@Author Runquan Ye, Nabeel Vali	
 		***********************************************************************/	
 		AUDS(){
 			initialSize = 100;
 			currentSize = 0;
 			currentMax = 100;
 			data = new T[initialSize];
+			initArray();
 		}
 
+		/************************************************************************
+ 		*Initializes all cells of the array to one value so we know which cell 
+ 		*is empty
+		*@author Nabeel
+ 		************************************************************************/
+		void initArray(){
+			for(int i=0; i<currentMax; i++){
+				data[i] = std::string("Null");
+			}
+		}
 
 		/************************************************************************
     		 * This is the copy constructor. It will take as a parameter a reference 
@@ -77,21 +88,61 @@ class AUDS{
 		int size(){
 			int numItems = 0;
 			for(int i=0; i<currentMax; i++){
-				if(data[i] != null){//this condition may be invalid
+				if(data[i] != "null"){//this condition may be invalid
 					numItems++;
 				}
 			}
 			return numItems;
 		}
 		
+		/************************************************************************
+ 		*Finds an empty spot in the data structure and returns the index/location
+ 		*@returns int index
+		*@author Nabeel
+ 		************************************************************************/
+		int indexOfEmptySpot(T data){
+			int emptySpotIndex= 0;
+			for(int i=0; i<currentMax; i++){
+				if(data[i] == "null"){
+					emptySpotIndex = i;
+					break;
+				}
+			}		
+			return emptySpotIndex;
+		}
 
+	
+		/************************************************************************
+		*Created a new array 50% larger, and re-points the pointer
+		*@Author Nabeel
+		************************************************************************/
+		void doubleArraySize(){
+			if(size() == currentMax){
+				T* newData = new T[(currentMax * 5) + currentMax];
+				delete data[]
+				data[] = newData[];
+			}
+			else{
+				//do nothing
+			}
+		}
+
+ 		
 		/************************************************************************
     		 * Adds the generic element to the data structure. If the array is full 
     		 * we recrate the array, but make it 50 percent larger
     		 * @author: Nabeel Vali
     		 ***********************************************************************/
 		void push(T e){
-			
+			if(size() == currentMax){
+				doubleArraySize();
+				int emptyIndex = indexOfEmptySpot(data);
+				data[emptyIndex] = e;
+			}	
+			else{
+				int otherEmptyIndex = indexOfEmptySpot(data);
+				data[otherEmptyIndex] = e;
+ 			}
 		}
 		
 		/************************************************************************
