@@ -118,7 +118,7 @@ class AUDS{
 		************************************************************************/
 		void doubleArraySize(){
 			if(size() == currentMax){
-				T* newData = new T[(currentMax * 5) + currentMax];
+		:		T* newData = new T[(currentMax * 5) + currentMax];
 				delete data[]
 				data[] = newData[];
 			}
@@ -168,5 +168,5 @@ class AUDS{
 		int currentMax;
 
 		/** Generic pointer to our array **/
-		std::T* data;
+		T* data;
 }
