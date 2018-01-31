@@ -1,6 +1,4 @@
-template <typename T>
-#include <stdlib.h> 
-
+#include <stdlib.h>
 /*****************************************************************
  * Almost Useless Data Structure (AUDS). This data structure will 
  * hold any type of object, through the use of a class template. 
@@ -8,7 +6,7 @@ template <typename T>
  * @author Runquan Ye, Nabeel Vali
  * @version Winter 2018
 *****************************************************************/
-
+template <typename T>
 class AUDS{
 
 	public:
@@ -131,7 +129,7 @@ class AUDS{
 		 * to the spot that was occupied by the element we removed.
 		 * @author: Runquan Ye
     		 ***********************************************************************/
-		T pop(){
+		void pop(){
 			int randomIndex = rand() %currentMax;
 			delete data[randomIndex];
 			data[randomIndex] = &data[currentMax - 1];
