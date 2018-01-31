@@ -138,11 +138,12 @@ class AUDS{
 		 * to the spot that was occupied by the element we removed.
 		 * @author: Runquan Ye
     		 ***********************************************************************/
-		void pop(){
+		T pop(){
 			int randomIndex = rand() %currentMax;
 			delete data[randomIndex];
 			data[randomIndex] = &data[currentMax - 1];
 			data[currentMax- 1] = &data[currentMax - 2];  
+			return data;
 		}
 	
 	private:
