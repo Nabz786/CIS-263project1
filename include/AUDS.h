@@ -24,7 +24,7 @@ class AUDS{
 			currentSize = 0;
 			currentMax = 100;
 			data = new T[initialSize];
-			initArray();
+		//	initArray();
 		}
 
 		/************************************************************************
@@ -32,27 +32,27 @@ class AUDS{
  		*is empty
 		*@author Nabeel
  		************************************************************************/
-		void initArray(){
-			for(int i=0; i<currentMax; i++){
-				data[i] = <string>"Null";
-			}
-		}
+	//	void initArray(){
+	//		for(int i=0; i<currentMax; i++){
+	//			*data[i] = 0;
+	//		}
+	//	}
 
 		/************************************************************************
     		 * This is the copy constructor. It will take as a parameter a reference 
 		 * to another AUDS object and will perform a DEEP copy of the object.
     		 * @author: Nabeel 
     		 ***********************************************************************/		
-//		AUDS(const AUDS &other){
-//			currentSize = other.currentSize;
-//			currentMax = other.currentMax;
-//			initialSize = other.initialSize;
-//			data = new std::string[currentMax]
-//			
-//			for(int i=0; i<currentMax; i++){ //figure out whether currentMAX or initialSize updates first so that we can get the new array size.
-//				data[i] = other.data[i];
-//			}
-//		}	
+		AUDS(const AUDS &other){
+			currentSize = other.currentSize;
+			currentMax = other.currentMax;
+			initialSize = other.initialSize;
+			data = new T[currentMax];
+			
+			for(int j = 0; j<currentMax; j++){ 
+				data[j] = other.data[j];
+			}
+		}	
 		
 
 		/************************************************************************
@@ -61,13 +61,13 @@ class AUDS{
 		 * performs a DEEP copy.
     		 * @author: Runquan Ye 
     		 ***********************************************************************/
-//		AUDS& operator = (AUDS other){
-//			std::swap(currentMax, other.currentMax);
-//			std::swap(currentSize, other.currentSize);
-//			std::swap(initialSize, other.initialSize);
-//			std::swap(data, other.data);
-//			return *this;
-//		};
+		AUDS& operator = (AUDS other){
+			std::swap(currentMax, other.currentMax);
+			std::swap(currentSize, other.currentSize);
+			std::swap(initialSize, other.initialSize);
+			std::swap(data, other.data);
+			return *this;
+		}
 
 		
 		/************************************************************************
@@ -76,7 +76,6 @@ class AUDS{
 		 * @author: Runquan Ye
     		 ***********************************************************************/
 		~AUDS(){
-	
 			delete[] data;	
 		}
 		
@@ -87,13 +86,7 @@ class AUDS{
     		 *
     		 **********************************************************************/
 		int size(){
-	//		int numItems = 0;
-	//		for(int j=0; j<currentMax; j++){
-	//			if(!isEmpty(data[j]){//this condition may be invalid
-	//				numItems++;
-	//			}
-	//		}
-	//		return numItems;
+			return 1;
 		}
 		
 		/************************************************************************
@@ -101,7 +94,7 @@ class AUDS{
  		*@returns int index
 		*@author Nabeel
  		************************************************************************/
-//		int indexOfEmptySpot(T data){
+	//	int indexOfEmptySpot(T data){
 	//		int emptySpotIndex= 0;
 	//		for(int i=0; i<currentMax; i++){
 	//			if(data[i] == "null"){
@@ -110,18 +103,18 @@ class AUDS{
 	//			}
 	//		}		
 	//		return emptySpotIndex;
-//		}
+	//	}
 
 	
 		/************************************************************************
 		*Created a new array 50% larger, and re-points the pointer
 		*@Author Nabeel
 		************************************************************************/
-//		void doubleArraySize(){
-//			T* newData = new T[(currentMax * 5) + currentMax];
-//			delete data[];
-//			data = newData;
-//		}
+		void doubleArraySize(){
+			T* newData = new T[(currentMax * 5) + currentMax];
+			delete data[];
+			data = newData;
+		}
 
  		
 		/************************************************************************
@@ -130,15 +123,7 @@ class AUDS{
     		 * @author: Nabeel Vali
     		 ***********************************************************************/
 		void push(T e){
-//			if(size() == currentMax){
-//				doubleArraySize();
-//				int emptyIndex = indexOfEmptySpot(data);
-//				data[emptyIndex] = e;
-//			}	
-//			else{
-//				int otherEmptyIndex = indexOfEmptySpot(data);
-//				data[otherEmptyIndex] = e;
-//			}
+			
 		}
 		
 		/************************************************************************
@@ -147,10 +132,10 @@ class AUDS{
 		 * @author: Runquan Ye
     		 ***********************************************************************/
 		T pop(){
-//			int randomIndex = rand() %currentMax;
-//			delete data[randomIndex];
-//			data[randomIndex] = &data[currentMax - 1];
-//			data[currentMax- 1] = &data[currentMax - 2];  
+			int randomIndex = rand() %currentMax;
+			delete data[randomIndex];
+			data[randomIndex] = &data[currentMax - 1];
+			data[currentMax- 1] = &data[currentMax - 2];  
 		}
 	
 	private:
