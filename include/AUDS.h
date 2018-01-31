@@ -1,3 +1,5 @@
+#include <iostream>
+#include <string>
 #include <stdlib.h>
 /*****************************************************************
  * Almost Useless Data Structure (AUDS). This data structure will 
@@ -110,7 +112,7 @@ class AUDS{
 		************************************************************************/
 		void doubleArraySize(){
 			T* newData = new T[(currentMax * 5) + currentMax];
-			delete data[];
+			delete[] data;
 			data = newData;
 		}
 
