@@ -24,7 +24,6 @@ class AUDS{
 			currentSize = 0;
 			currentMax = 100;
 			data = new T[initialSize];
-		//	initArray();
 		}
 
 		/************************************************************************
@@ -93,8 +92,10 @@ class AUDS{
     		 *
     		 **********************************************************************/
 		int size(){
-			return 0;
+			return currentSize;
 		}
+
+		
 		
 		/************************************************************************
  		*Finds an empty spot in the data structure and returns the index/location
@@ -118,9 +119,11 @@ class AUDS{
 		*@Author Nabeel
 		************************************************************************/
 		void doubleArraySize(){
-			T* newData = new T[(currentMax * 5) + currentMax];
+			T* newData = new T[(currentMax * 0.5) + currentMax];
 			delete[] data;
 			data = newData;
+			currentMax = (currentMax * 0.5) + currentMax;
+			
 		}
 
  		
@@ -130,6 +133,14 @@ class AUDS{
     		 * @author: Nabeel Vali
     		 ***********************************************************************/
 		void push(T e){
+			if(currentSize == currentMax){
+				doubleArraySize();
+				data[currentSize] = e;
+				currentSize++;
+			}
+			else{
+				data[currentSize] = e;
+			}
 			
 		}
 		
