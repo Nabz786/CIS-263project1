@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <stdlib.h>
+
 /*****************************************************************
  * Almost Useless Data Structure (AUDS). This data structure will 
  * hold any type of object, through the use of a class template. 
@@ -8,12 +9,12 @@
  * @author Runquan Ye, Nabeel Vali
  * @version Winter 2018
 *****************************************************************/
+
 template <typename T>
+
 class AUDS{
 
-	public:
-	
-		
+	public:		
 		/***********************************************************************
 		*Generic Constructor used when program is started to intialize our
 		*generic array
@@ -150,11 +151,12 @@ class AUDS{
 		 * @author: Runquan Ye
     		 ***********************************************************************/
 		T pop(){
+			T temp;
 			int randomIndex = rand() %currentMax;
-			delete data[randomIndex];
-			data[randomIndex] = &data[currentMax - 1];
-			data[currentMax- 1] = &data[currentMax - 2];  
-			return data;
+			temp =  data[randomIndex];
+			data[randomIndex] = data[currentMax];
+			currentSize -= 1;  
+			return temp;
 		}
 	
 	private:
