@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cstdlib>
 #include <stdlib.h>
 
 /*****************************************************************
@@ -120,7 +121,7 @@ class AUDS{
 		*@Author Nabeel
 		************************************************************************/
 		void doubleArraySize(){
-			T* newData = new T[(currentMax * 0.5) + currentMax];
+			T* newData = new T[(int)((currentMax * 0.5) + currentMax)];
 			delete[] data;
 			data = newData;
 			currentMax = (currentMax * 0.5) + currentMax;
@@ -141,6 +142,7 @@ class AUDS{
 			}
 			else{
 				data[currentSize] = e;
+				currentSize++;
 			}
 			
 		}
@@ -152,11 +154,16 @@ class AUDS{
     		 ***********************************************************************/
 		T pop(){
 			T temp;
-			int randomIndex = rand() %currentMax;
+			int randomIndex = rand()%currentSize;
 			temp =  data[randomIndex];
-			data[randomIndex] = data[currentMax];
+			data[randomIndex] = data[currentSize];
 			currentSize -= 1;  
 			return temp;
+		}
+
+		int getRandomIndex(){
+			int randomIndex = rand()%currentMax;
+			return randomIndex;
 		}
 	
 	private:
