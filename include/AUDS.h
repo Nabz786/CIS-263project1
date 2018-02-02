@@ -33,11 +33,18 @@ class AUDS{
  		*is empty
 		*@author Nabeel
  		************************************************************************/
-	//	void initArray(){
-	//		for(int i=0; i<currentMax; i++){
-	//			*data[i] = 0;
-	//		}
-	//	}
+		void initArray(){
+			for(int i=0; i<currentMax; i++){
+				data[i] = 0;
+			}
+		}
+
+		void printArray(){
+			for(int i = 0; i < currentMax; i++){
+				std::cout << data[i] << std::endl;
+			}
+			
+		}
 
 		/************************************************************************
     		 * This is the copy constructor. It will take as a parameter a reference 
@@ -87,7 +94,7 @@ class AUDS{
     		 *
     		 **********************************************************************/
 		int size(){
-			return 1;
+			return 0;
 		}
 		
 		/************************************************************************
