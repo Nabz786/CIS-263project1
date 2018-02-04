@@ -156,7 +156,7 @@ class AUDS{
 			int randomIndex = rand() %currentMax;
 			temp =  data[randomIndex];
 			*data[randomIndex] = *data[currentMax];
-			*data[currentMax] = *data[currentMax - 1];
+			data[currentMax] = &data[currentMax - 1];
 			return temp;  
 		}
 	
