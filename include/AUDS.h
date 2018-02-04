@@ -22,39 +22,20 @@ class AUDS{
 		*@Author Runquan Ye, Nabeel Vali	
 		***********************************************************************/	
 		AUDS(){
-			initialSize = 100;
 			currentSize = 0;
 			currentMax = 100;
-			data = new T[initialSize];
-		}
-
-		/************************************************************************
- 		*Initializes all cells of the array to one value so we know which cell 
- 		*is empty
-		*@author Nabeel
- 		************************************************************************/
-		void initArray(){
-			for(int i=0; i<currentMax; i++){
-				data[i] = 0;
-			}
-		}
-
-		void printArray(){
-			for(int i = 0; i < currentMax; i++){
-				std::cout << data[i] << std::endl;
-			}
-			
+			data = new T[currentMax];
 		}
 
 		/************************************************************************
     		 * This is the copy constructor. It will take as a parameter a reference 
 		 * to another AUDS object and will perform a DEEP copy of the object.
     		 * @author: Nabeel 
+    		 * @return: Deep copy of the another data structure to this one
     		 ***********************************************************************/		
 		AUDS(const AUDS &other){
 			currentSize = other.currentSize;
 			currentMax = other.currentMax;
-			initialSize = other.initialSize;
 			data = new T[currentMax];
 			
 			for(int j = 0; j<currentMax; j++){ 
@@ -68,11 +49,11 @@ class AUDS{
 		 * learned about in class to set one object equal to another. It also 
 		 * performs a DEEP copy.
     		 * @author: Runquan Ye 
+    		 * @return: the newly copyed data structure
     		 ***********************************************************************/
 		AUDS& operator = (AUDS other){
 			std::swap(currentMax, other.currentMax);
 			std::swap(currentSize, other.currentSize);
-			std::swap(initialSize, other.initialSize);
 			std::swap(data, other.data);
 			return *this;
 		}
@@ -91,30 +72,11 @@ class AUDS{
 		/************************************************************************
     		 * Returns the current number of objects we are holding.
     		 * @author: Nabeel Vali
-    		 *
+    		 * @return: int the size/number of objects in the structure
     		 **********************************************************************/
 		int size(){
 			return currentSize;
 		}
-
-		
-		
-		/************************************************************************
- 		*Finds an empty spot in the data structure and returns the index/location
- 		*@returns int index
-		*@author Nabeel
- 		************************************************************************/
-	//	int indexOfEmptySpot(T data){
-	//		int emptySpotIndex= 0;
-	//		for(int i=0; i<currentMax; i++){
-	//			if(data[i] == "null"){
-	//				emptySpotIndex = i;
-	//				break;
-	//			}
-	//		}		
-	//		return emptySpotIndex;
-	//	}
-
 	
 		/************************************************************************
 		*Created a new array 50% larger, and re-points the pointer
@@ -122,10 +84,12 @@ class AUDS{
 		************************************************************************/
 		void doubleArraySize(){
 			T* newData = new T[(int)((currentMax * 0.5) + currentMax)];
+			for(int i = 0; i < currentMax; i++){
+				newData[i] = data[i];
+			}
 			delete[] data;
 			data = newData;
 			currentMax = (currentMax * 0.5) + currentMax;
-			
 		}
 
  		
@@ -151,6 +115,7 @@ class AUDS{
     		 * Removes a random item from the list. Moves the last item in the array 
 		 * to the spot that was occupied by the element we removed.
 		 * @author: Runquan Ye
+		 * @return: T the popped object
     		 ***********************************************************************/
 		T pop(){
 			T temp;
@@ -159,11 +124,6 @@ class AUDS{
 			data[randomIndex] = data[currentSize];
 			currentSize -= 1;  
 			return temp;
-		}
-
-		int getRandomIndex(){
-			int randomIndex = rand()%currentMax;
-			return randomIndex;
 		}
 	
 	private:

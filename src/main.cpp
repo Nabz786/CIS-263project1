@@ -24,7 +24,6 @@ TEST_CASE( "Push test", "[inner]" ){
 	for(int i=0; i<1000; i++){
 		a.push(i);
 		std::cout << "current size: "  << a.size() << std::endl;
-		std::cout << "current random value: " << a.getRandomIndex() << std::endl;
 	}
 	CHECK( a.size() == 1000 );
 }
@@ -33,7 +32,7 @@ TEST_CASE( "Pop test", "[inner]" ){
 	AUDS<std::string> s;
 	for(int i=0; i<1000; i++){
 		s.push("Item " + std::to_string(i));
-		std::cout << s.size() << std::endl;
+	//	std::cout << s.size() << std::endl;
 	}
 	
 
@@ -44,3 +43,16 @@ TEST_CASE( "Pop test", "[inner]" ){
 	}
 	CHECK( s.size() == 500 );
 }
+
+TEST_CASE("Another pop test", "[inner]"){
+	AUDS<int> ss;
+	for(int i = 0; i<100; i++){
+		ss.push(i);
+	}
+
+	for(int j = 0; j < 50; j++){
+		std::cout << ss.pop() << std::endl;
+	}
+	CHECK(ss.size() == 50);
+}
+
