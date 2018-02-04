@@ -35,7 +35,7 @@ class AUDS{
  		 ************************************************************************/
 		void initArray(){
 			for(int i = 0; i < currentMax; i++){
-				data[i] = std::string(NULL);
+				data[i] = std::string("NULL");
 			}
 		}
 
@@ -61,7 +61,7 @@ class AUDS{
     		 * This is the copy operator=. It will perform the copy-and-swap we 
 		 * learned about in class to set one object equal to another. It also 
 		 * performs a DEEP copy.
-		 * @return the swaped data array
+		 * @return the copyed swaped data array
     		 * @author: Runquan Ye 
     		 ***********************************************************************/
 		AUDS& operator = (AUDS other){
@@ -91,7 +91,7 @@ class AUDS{
 		int size(){
 			int numItems = 0;
 			for(int i = 0; i < currentMax; i++){
-				if(data[i] != NULL){
+				if(data[i] != "NULL"){
 					numItems++;
 				}
 			}
@@ -106,7 +106,7 @@ class AUDS{
 		int indexOfEmptySpot(T data){
 			int emptySpotIndex= 0;
 			for(int i = 0; i < currentMax; i++){
-				if(data[i] == NULL){
+				if(data[i] == "NULL"){
 					emptySpotIndex = i;
 					break;
 				}
