@@ -1,5 +1,6 @@
 template <typename T>
 #include <stdlib.h> 
+#include <iostream> 
 
 /*****************************************************************
  * Almost Useless Data Structure (AUDS). This data structure will 
@@ -7,7 +8,7 @@ template <typename T>
  *
  * @author Runquan Ye, Nabeel Vali
  * @version Winter 2018
-*****************************************************************/
+ *****************************************************************/
 
 class AUDS{
 
@@ -15,10 +16,10 @@ class AUDS{
 	
 		
 		/***********************************************************************
-		*Generic Constructor used when program is started to intialize our
-		*generic array
-		*@Author Runquan Ye, Nabeel Vali	
-		***********************************************************************/	
+		 * Generic Constructor used when program is started to intialize our
+		 * generic array
+		 * @author Runquan Ye, Nabeel Vali	
+		 ***********************************************************************/	
 		AUDS(){
 			initialSize = 100;
 			currentSize = 0;
@@ -28,13 +29,13 @@ class AUDS{
 		}
 
 		/************************************************************************
- 		*Initializes all cells of the array to one value so we know which cell 
- 		*is empty
-		*@author Nabeel
- 		************************************************************************/
+ 		 * Initializes all cells of the array to one value so we know which cell 
+ 		 * is empty
+		 * @author Nabeel
+ 		 ************************************************************************/
 		void initArray(){
-			for(int i=0; i<currentMax; i++){
-				data[i] = std::string("Null");
+			for(int i = 0; i < currentMax; i++){
+				data[i] = std::string(NULL);
 			}
 		}
 
@@ -49,7 +50,8 @@ class AUDS{
 			initialSize = other.currentSize;
 			data = new std::string[currentMax]
 			
-			for(int i=0; i<currentMax; i++){ //figure out whether currentMAX or initialSize updates first so that we can get the new array size.
+			//figure out whether currentMAX or initialSize updates first.
+			for(int i = 0; i < currentMax; i++){
 				data[i] = other.data[i];
 			}
 		}	
@@ -59,6 +61,7 @@ class AUDS{
     		 * This is the copy operator=. It will perform the copy-and-swap we 
 		 * learned about in class to set one object equal to another. It also 
 		 * performs a DEEP copy.
+		 * @return the swaped data array
     		 * @author: Runquan Ye 
     		 ***********************************************************************/
 		AUDS& operator = (AUDS other){
@@ -82,13 +85,13 @@ class AUDS{
 		
 		/************************************************************************
     		 * Returns the current number of objects we are holding.
+		 * @return the size of the array
     		 * @author: Nabeel Vali
-    		 *
     		 **********************************************************************/
 		int size(){
 			int numItems = 0;
-			for(int i=0; i<currentMax; i++){
-				if(data[i] != "null"){//this condition may be invalid
+			for(int i = 0; i < currentMax; i++){
+				if(data[i] != NULL){
 					numItems++;
 				}
 			}
@@ -96,14 +99,14 @@ class AUDS{
 		}
 		
 		/************************************************************************
- 		*Finds an empty spot in the data structure and returns the index/location
- 		*@returns int index
-		*@author Nabeel
- 		************************************************************************/
+ 		 * Finds an empty spot in the data structure and returns the index/location
+ 		 * @returns int index
+		 * @author Nabeel
+ 		 ************************************************************************/
 		int indexOfEmptySpot(T data){
 			int emptySpotIndex= 0;
-			for(int i=0; i<currentMax; i++){
-				if(data[i] == "null"){
+			for(int i = 0; i < currentMax; i++){
+				if(data[i] == NULL){
 					emptySpotIndex = i;
 					break;
 				}
@@ -113,17 +116,14 @@ class AUDS{
 
 	
 		/************************************************************************
-		*Created a new array 50% larger, and re-points the pointer
-		*@Author Nabeel
-		************************************************************************/
+		 * Created a new array 50% larger, and re-points the pointer
+		 * @Author Nabeel
+		 ************************************************************************/
 		void doubleArraySize(){
 			if(size() == currentMax){
 		:		T* newData = new T[(currentMax * 5) + currentMax];
 				delete data[]
 				data[] = newData[];
-			}
-			else{
-				//do nothing
 			}
 		}
 
@@ -148,13 +148,16 @@ class AUDS{
 		/************************************************************************
     		 * Removes a random item from the list. Moves the last item in the array 
 		 * to the spot that was occupied by the element we removed.
+		 * @return the randomIndex data
 		 * @author: Runquan Ye
     		 ***********************************************************************/
 		T pop(){
+			T temp;
 			int randomIndex = rand() %currentMax;
-			delete data[randomIndex];
-			data[randomIndex] = &data[currentMax - 1];
-			data[currentMax- 1] = &data[currentMax - 2];  
+			temp =  data[randomIndex];
+			*data[randomIndex] = *data[currentMax];
+			*data[currentMax] = *data[currentMax - 1];
+			return temp;  
 		}
 	
 	private:
