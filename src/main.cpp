@@ -56,3 +56,15 @@ TEST_CASE("Another pop test", "[inner]"){
 	CHECK(ss.size() == 50);
 }
 
+TEST_CASE("Pop Exception Test", "[inner"){
+	AUDS<int> s;
+	for(int i = 0; i < 100; i++){
+		s.push(i);
+	}
+
+	for(int i = 0; i < 100; i++){
+		s.pop();
+	}
+	CHECK_THROWS_WITH(s.pop(),"No elements are left to pop");
+}
+
