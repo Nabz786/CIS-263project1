@@ -64,7 +64,7 @@ class AUDS{
 		 * the OS to hold the data we stored.
 		 * @author: Runquan Ye
     		 ***********************************************************************/
-		~AUDS(){
+	        ~AUDS(){
 			delete[] data;	
 		}
 		
@@ -79,23 +79,8 @@ class AUDS{
 		}
 	
 		/************************************************************************
-		*Created a new array 50% larger, and re-points the pointer
-		*@Author Nabeel
-		************************************************************************/
-		void doubleArraySize(){
-			T* newData = new T[(int)((currentMax * 0.5) + currentMax)];
-			for(int i = 0; i < currentMax; i++){
-				newData[i] = data[i];
-			}
-			delete[] data;
-			data = newData;
-			currentMax = (currentMax * 0.5) + currentMax;
-		}
-
- 		
-		/************************************************************************
     		 * Adds the generic element to the data structure. If the array is full 
-    		 * we recrate the array, but make it 50 percent larger
+    		 * we recreate the array making it 50% larger
     		 * @author: Nabeel Vali
     		 ***********************************************************************/
 		void push(T e){
@@ -108,22 +93,26 @@ class AUDS{
 				data[currentSize] = e;
 				currentSize++;
 			}
-			
 		}
 		
 		/************************************************************************
     		 * Removes a random item from the list. Moves the last item in the array 
 		 * to the spot that was occupied by the element we removed.
-		 * @author: Runquan Ye
+		 * @author: Runquan Ye & Nabeel 
 		 * @return: T the popped object
     		 ***********************************************************************/
 		T pop(){
-			T temp;
-			int randomIndex = rand()%currentSize;
-			temp =  data[randomIndex];
-			data[randomIndex] = data[currentSize];
-			currentSize -= 1;  
-			return temp;
+			if(currentSize == 0){
+				throw "No elements are left to pop";
+			}
+			else{
+				T temp;
+				int randomIndex = rand()%currentSize;
+				temp =  data[randomIndex];
+				data[randomIndex] = data[currentSize];
+				currentSize -= 1;  
+				return temp;
+			}
 		}
 	
 	private:
@@ -138,4 +127,21 @@ class AUDS{
 
 		/** Generic pointer to our array **/
 		T* data;
+		
+
+		/*************************************************************************
+		*created a new array 50% larger, and re-points the pointer
+		*This method should be private as it should only be called on one
+		*condition in the push() method
+                *@Author Nabeel
+                ************************************************************************/
+                void doubleArraySize(){
+                        T* newData = new T[(int)(currentMax * 1.5)];
+                        for(int i = 0; i < currentMax; i++){
+                                newData[i] = data[i];
+                        }
+                        delete[] data;
+                        data = newData;
+                        currentMax = (int)(currentMax * 1.5);
+                }
 };
