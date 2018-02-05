@@ -82,13 +82,14 @@ class AUDS{
     		 * Adds the generic element to the data structure. If the array is full 
     		 * we recreate the array making it 50% larger
     		 * @author: Nabeel Vali
+    		 * @throws: Notification to the user that the array may have not been
+    		 * created
     		 ***********************************************************************/
 		void push(T e){
 			if(currentSize == currentMax){
 				doubleArraySize();
 				data[currentSize] = e;
-				currentSize++;
-			}
+				currentSize++;				}
 			else{
 				data[currentSize] = e;
 				currentSize++;
@@ -100,11 +101,15 @@ class AUDS{
 		 * to the spot that was occupied by the element we removed.
 		 * @author: Runquan Ye & Nabeel 
 		 * @return: T the popped object
+		 * @throws: Notification to the user that there's nothing left to pop
     		 ***********************************************************************/
 		T pop(){
+			//checks to see if user is popping from an empty structure and
+			//notifys user
 			if(currentSize == 0){
 				throw "No elements are left to pop";
 			}
+			//if the "if" condition is not method remove a random element
 			else{
 				T temp;
 				int randomIndex = rand()%currentSize;
@@ -136,12 +141,14 @@ class AUDS{
                 *@Author Nabeel
                 ************************************************************************/
                 void doubleArraySize(){
+
                         T* newData = new T[(int)(currentMax * 1.5)];
                         for(int i = 0; i < currentMax; i++){
                                 newData[i] = data[i];
                         }
+
                         delete[] data;
                         data = newData;
                         currentMax = (int)(currentMax * 1.5);
                 }
-};
+	};
